@@ -496,7 +496,7 @@ namespace MonoMac.CoreAnimation {
 
 #if MONOMAC
 		[Export ("autoresizingMask")]
-		CAAutoresizingMask AutoresizinMask { get; set; }
+		CAAutoresizingMask AutoresizingMask { get; set; }
 
 		[Export ("resizeSublayersWithOldSize:")]
 		void ResizeSublayers (CGSize oldSize);
@@ -1031,7 +1031,7 @@ namespace MonoMac.CoreAnimation {
 
 		[Since (4,0)]
 		[Static, Export ("completionBlock"), NullAllowed]
-		NSAction CompletionBlock { get; set; }
+		Action CompletionBlock { get; set; }
 
 		[Field ("kCATransactionAnimationDuration")]
 		NSString AnimationDurationKey { get; }

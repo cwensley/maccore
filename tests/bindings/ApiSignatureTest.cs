@@ -355,7 +355,7 @@ namespace TouchUnit.Bindings {
 			case '@':
 				switch (encodedType [1]) {
 				case '?':
-					return (type.Name == "NSAction") || type.BaseType.FullName == "System.MulticastDelegate";
+					return (type.Name == "Action") || type.BaseType.FullName == "System.MulticastDelegate";
 				default:
 					return false;
 				}

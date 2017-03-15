@@ -28,17 +28,15 @@ using MonoMac.ObjCRuntime;
 
 namespace MonoMac.Foundation {
 
-	public delegate void NSAction ();
-
 	// Use this for synchronous operations
 	[Register ("__MonoMac_NSActionDispatcher")]
 	internal sealed class NSActionDispatcher : NSObject {
 		public const string SelectorName = "xamarinApplySelector";
 		public static readonly Selector Selector = new Selector (SelectorName);
 
-		readonly NSAction action;
+		readonly Action action;
 
-		public NSActionDispatcher (NSAction action)
+		public NSActionDispatcher (Action action)
 		{
 			if (action == null)
 				throw new ArgumentNullException ("action");
@@ -58,7 +56,7 @@ namespace MonoMac.Foundation {
 	[Register ("__MonoMac_NSAsyncActionDispatcher")]
 	internal class NSAsyncActionDispatcher : NSObject {
 		GCHandle gch;
-		NSAction action;
+		Action action;
 
 #if !MONOTOUCH
 		// This ctor is so that the runtime can create a new instance of this class
@@ -73,7 +71,7 @@ namespace MonoMac.Foundation {
 		}
 #endif
 
-		public NSAsyncActionDispatcher (NSAction action)
+		public NSAsyncActionDispatcher (Action action)
 		{
 			this.action = action;
 			gch = GCHandle.Alloc (this);

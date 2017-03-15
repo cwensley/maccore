@@ -31,47 +31,47 @@ namespace MonoMac.Foundation {
 
 	public partial class NSTimer {
 		
-		public static NSTimer CreateRepeatingScheduledTimer (TimeSpan when, NSAction action)
+		public static NSTimer CreateRepeatingScheduledTimer (TimeSpan when, Action action)
 		{
 			return CreateScheduledTimer (when.TotalSeconds, new NSActionDispatcher (action), NSActionDispatcher.Selector, null, true);
 		}
 
-		public static NSTimer CreateRepeatingScheduledTimer (double seconds, NSAction action)
+		public static NSTimer CreateRepeatingScheduledTimer (double seconds, Action action)
 		{
 			return CreateScheduledTimer (seconds, new NSActionDispatcher (action), NSActionDispatcher.Selector, null, true);
 		}
 		
-		public static NSTimer CreateScheduledTimer (TimeSpan when, NSAction action)
+		public static NSTimer CreateScheduledTimer (TimeSpan when, Action action)
 		{
 			return CreateScheduledTimer (when.TotalSeconds, new NSActionDispatcher (action), NSActionDispatcher.Selector, null, false);
 		}
 
-		public static NSTimer CreateScheduledTimer (double seconds, NSAction action)
+		public static NSTimer CreateScheduledTimer (double seconds, Action action)
 		{
 			return CreateScheduledTimer (seconds, new NSActionDispatcher (action), NSActionDispatcher.Selector, null, false);
 		}
 
-		public static NSTimer CreateRepeatingTimer (TimeSpan when, NSAction action)
+		public static NSTimer CreateRepeatingTimer (TimeSpan when, Action action)
 		{
 			return CreateTimer (when.TotalSeconds, new NSActionDispatcher (action), NSActionDispatcher.Selector, null, true);
 		}
 
-		public static NSTimer CreateRepeatingTimer (double seconds, NSAction action)
+		public static NSTimer CreateRepeatingTimer (double seconds, Action action)
 		{
 			return CreateTimer (seconds, new NSActionDispatcher (action), NSActionDispatcher.Selector, null, true);
 		}
 		
-		public static NSTimer CreateTimer (TimeSpan when, NSAction action)
+		public static NSTimer CreateTimer (TimeSpan when, Action action)
 		{
 			return CreateTimer (when.TotalSeconds, new NSActionDispatcher (action), NSActionDispatcher.Selector, null, false);
 		}
 
-		public static NSTimer CreateTimer (double seconds, NSAction action)
+		public static NSTimer CreateTimer (double seconds, Action action)
 		{
 			return CreateTimer (seconds, new NSActionDispatcher (action), NSActionDispatcher.Selector, null, false);
 		}
 		
-		public NSTimer (NSDate date, TimeSpan when, NSAction action, System.Boolean repeats)
+		public NSTimer (NSDate date, TimeSpan when, Action action, System.Boolean repeats)
 			: this (date, when.TotalSeconds, new NSActionDispatcher (action), NSActionDispatcher.Selector, null, repeats)
 		{
 		}

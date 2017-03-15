@@ -977,7 +977,7 @@ namespace MonoMac.AVFoundation {
 
 		[Export ("loadValuesAsynchronouslyForKeys:completionHandler:")]
 		[Async ("LoadValuesTaskAsync")]
-		void LoadValuesAsynchronously (string [] keys, NSAction handler);
+		void LoadValuesAsynchronously (string [] keys, Action handler);
 #if !MONOMAC
 		[Since (6,0)]
 		[Export ("chapterMetadataGroupsBestMatchingPreferredLanguages:")]
@@ -1297,13 +1297,13 @@ namespace MonoMac.AVFoundation {
 		void CancelWriting ();
 
 		[Export ("finishWriting")]
-		[Obsolete ("Deprecated in iOS 6.0. Use the asynchronous FinishWriting(NSAction completionHandler) instead")]
+		[Obsolete ("Deprecated in iOS 6.0. Use the asynchronous FinishWriting(Action completionHandler) instead")]
 		bool FinishWriting ();
 #if !MONOMAC
 		[Since (6,0)]
 		[Export ("finishWritingWithCompletionHandler:")]
 		[Async]
-		void FinishWriting (NSAction completionHandler);
+		void FinishWriting (Action completionHandler);
 #endif
 		[Export ("movieTimeScale")]
 		int MovieTimeScale { get; set; }
@@ -1383,7 +1383,7 @@ namespace MonoMac.AVFoundation {
 		IntPtr Constructor (string mediaType, [NullAllowed] AVVideoSettingsCompressed outputSettings);
 
 		[Export ("requestMediaDataWhenReadyOnQueue:usingBlock:")]
-		void RequestMediaData (DispatchQueue queue, NSAction action);
+		void RequestMediaData (DispatchQueue queue, Action action);
 
 		[Export ("appendSampleBuffer:")]
 		bool AppendSampleBuffer (CMSampleBuffer sampleBuffer);
@@ -2460,7 +2460,7 @@ namespace MonoMac.AVFoundation {
 
 		[Export ("loadValuesAsynchronouslyForKeys:completionHandler:")]
 		[Async ("LoadValuesTaskAsync")]
-		void LoadValuesAsynchronously (string [] keys, NSAction handler);
+		void LoadValuesAsynchronously (string [] keys, Action handler);
 
 		[Since (6,0)]
 		[Static, Export ("metadataItemsFromArray:filteredAndSortedAccordingToPreferredLanguages:")]
@@ -3696,7 +3696,7 @@ namespace MonoMac.AVFoundation {
 		NSObject AddPeriodicTimeObserver (CMTime interval, DispatchQueue queue, AVTimeHandler handler);
 
 		[Export ("addBoundaryTimeObserverForTimes:queue:usingBlock:")]
-		NSObject AddBoundaryTimeObserver (NSValue []times, DispatchQueue queue, NSAction handler);
+		NSObject AddBoundaryTimeObserver (NSValue []times, DispatchQueue queue, Action handler);
 
 		[Export ("removeTimeObserver:")]
 		void RemoveTimeObserver (NSObject observer);
@@ -4288,7 +4288,7 @@ namespace MonoMac.AVFoundation {
 
 		[Abstract]
 		[Export ("loadValuesAsynchronouslyForKeys:completionHandler:")]
-		void LoadValuesAsynchronously (string [] keys, NSAction handler);
+		void LoadValuesAsynchronously (string [] keys, Action handler);
 	}
 
 	[Since (4,1)]

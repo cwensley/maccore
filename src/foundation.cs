@@ -4141,10 +4141,10 @@ namespace MonoMac.Foundation
 	public interface NSBlockOperation {
 		[Static]
 		[Export ("blockOperationWithBlock:")]
-		NSBlockOperation Create (/* non null */ NSAction method);
+		NSBlockOperation Create (/* non null */ Action method);
 
 		[Export ("addExecutionBlock:")]
-		void AddExecutionBlock (/* non null */ NSAction method);
+		void AddExecutionBlock (/* non null */ Action method);
 
 		[Export ("executionBlocks")]
 		NSObject [] ExecutionBlocks { get; }
@@ -4160,7 +4160,7 @@ namespace MonoMac.Foundation
 		void AddOperations ([NullAllowed] NSOperation [] operations, bool waitUntilFinished);
 
 		[Export ("addOperationWithBlock:")][PostGet ("Operations")]
-		void AddOperation (/* non null */ NSAction operation);
+		void AddOperation (/* non null */ Action operation);
 
 		[Export ("operations")]
 		NSOperation [] Operations { get; }
@@ -5987,7 +5987,7 @@ namespace MonoMac.Foundation
 		void CoordinateWriteWrite (NSUrl writingURL, NSFileCoordinatorWritingOptions writingOptions, NSUrl writingURL2, NSFileCoordinatorWritingOptions writingOptions2, out NSError error, /* non null */ NSFileCoordinatorWorkerRW writeWriteWorker);
 
 		[Export ("prepareForReadingItemsAtURLs:options:writingItemsAtURLs:options:error:byAccessor:")]
-		void CoordinateBatc (NSUrl [] readingURLs, NSFileCoordinatorReadingOptions readingOptions, NSUrl [] writingURLs, NSFileCoordinatorWritingOptions writingOptions, out NSError error, /* non null */ NSAction batchHandler);
+		void CoordinateBatc (NSUrl [] readingURLs, NSFileCoordinatorReadingOptions readingOptions, NSUrl [] writingURLs, NSFileCoordinatorWritingOptions writingOptions, out NSError error, /* non null */ Action batchHandler);
 
 		[Export ("itemAtURL:didMoveToURL:")]
 		void ItemMoved (NSUrl fromUrl, NSUrl toUrl);
@@ -6385,10 +6385,10 @@ namespace MonoMac.Foundation
 
 #if DOUBLE_BLOCKS
 		[Export ("relinquishPresentedItemToReader:")]
-		void RelinquishPresentedItem (NSAction readerAction);
+		void RelinquishPresentedItem (Action readerAction);
 
 		[Export ("relinquishPresentedItemToWriter:")]
-		void RelinquishPresentedItem (NSAction writerAction);
+		void RelinquishPresentedItem (Action writerAction);
 
 		[Export ("savePresentedItemChangesWithCompletionHandler:")]
 		void SavePresentedItemChanges (...);

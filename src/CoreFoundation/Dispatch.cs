@@ -283,7 +283,7 @@ namespace MonoMac.CoreFoundation {
 		static void static_dispatcher_to_managed (IntPtr context)
 		{
 			GCHandle gch = GCHandle.FromIntPtr (context);
-			var obj = gch.Target as Tuple<NSAction, DispatchQueue>;
+			var obj = gch.Target as Tuple<Action, DispatchQueue>;
 			if (obj != null) {
 				var sc = SynchronizationContext.Current;
 
@@ -310,7 +310,7 @@ namespace MonoMac.CoreFoundation {
 			gch.Free ();
 		}
 		
-		public void DispatchAsync (NSAction action)
+		public void DispatchAsync (Action action)
 		{
 			if (action == null)
 				throw new ArgumentNullException ("action");
@@ -318,7 +318,7 @@ namespace MonoMac.CoreFoundation {
 			dispatch_async_f (handle, (IntPtr) GCHandle.Alloc (Tuple.Create (action, this)), static_dispatch);
 		}
 
-		public void DispatchSync (NSAction action)
+		public void DispatchSync (Action action)
 		{
 			if (action == null)
 				throw new ArgumentNullException ("action");
@@ -432,7 +432,7 @@ namespace MonoMac.CoreFoundation {
 			return new DispatchGroup (ptr, true);
 		}
 
-		public void DispatchAsync (DispatchQueue queue, NSAction action)
+		public void DispatchAsync (DispatchQueue queue, Action action)
 		{
 			if (queue == null)
 				throw new ArgumentNullException ("queue");
