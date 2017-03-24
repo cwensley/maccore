@@ -63,7 +63,7 @@ namespace MonoMac.ObjCRuntime {
 			var actual = Marshal.ReadIntPtr (indirect);
 			if (actual == IntPtr.Zero)
 				return null;
-			return (NSString) Runtime.GetNSObject (actual);
+			return Runtime.GetNSObject<NSString> (actual);
 		}
 
 		public static IntPtr GetIndirect (IntPtr handle, string symbol)
@@ -80,7 +80,7 @@ namespace MonoMac.ObjCRuntime {
 			var actual = Marshal.ReadIntPtr (indirect);
 			if (actual == IntPtr.Zero)
 				return null;
-			return (NSNumber) Runtime.GetNSObject (actual);
+			return Runtime.GetNSObject<NSNumber> (actual);
 		}
 #endif
 

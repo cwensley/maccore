@@ -144,7 +144,7 @@ namespace MonoMac.AddressBook {
 		public NSString Label {
 			get {
 				AssertValid ();
-				return (NSString) Runtime.GetNSObject (ABMultiValue.CopyLabelAtIndex (self.Handle, index));
+				return Runtime.GetNSObject<NSString> (ABMultiValue.CopyLabelAtIndex (self.Handle, index));
 			}
 			set {
 				if (IsReadOnly)

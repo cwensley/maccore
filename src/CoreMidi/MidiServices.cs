@@ -310,7 +310,7 @@ namespace MonoMac.CoreMidi {
 			
 			code = MIDIObjectGetDictionaryProperty (handle, property, out val);
 			if (code == 0)
-				return (NSDictionary) Runtime.GetNSObject (val);
+				return Runtime.GetNSObject<NSDictionary> (val);
 			throw new MidiException ((MidiError) code);
 		}
 
@@ -331,7 +331,7 @@ namespace MonoMac.CoreMidi {
 			
 			code = MIDIObjectGetDataProperty (handle, property, out val);
 			if (code == 0)
-				return (NSData) Runtime.GetNSObject (val);
+				return Runtime.GetNSObject<NSData> (val);
 			throw new MidiException ((MidiError) code);
 		}
 
@@ -393,7 +393,7 @@ namespace MonoMac.CoreMidi {
 			IntPtr val;
 			if (MIDIObjectGetProperties (handle, out val, deep) != 0)
 				return null;
-			return (NSDictionary) Runtime.GetNSObject (val);
+			return Runtime.GetNSObject<NSDictionary> (val);
 		}
 		
 #endif

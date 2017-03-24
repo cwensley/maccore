@@ -103,7 +103,7 @@ namespace MonoMac.Security {
 		
 		static NSDictionary GetRetainedDictionary (IntPtr handle)
 		{
-			NSDictionary dict = (NSDictionary) Runtime.GetNSObject (handle);
+			NSDictionary dict = Runtime.GetNSObject<NSDictionary> (handle);
 			dict.Release ();
 			return dict;
 		}

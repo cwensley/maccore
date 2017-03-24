@@ -275,7 +275,7 @@ namespace MonoMac.CoreText {
 		public IEnumerable<CTFontFeatures> Features {
 			get {
 				return Adapter.GetNativeArray (Dictionary, CTFontDescriptorAttributeKey.Features,
-						d => new CTFontFeatures ((NSDictionary) Runtime.GetNSObject (d)));
+						d => new CTFontFeatures (Runtime.GetNSObject<NSDictionary> (d)));
 			}
 			set {
 				List<CTFontFeatures> v;
@@ -291,7 +291,7 @@ namespace MonoMac.CoreText {
 		public IEnumerable<CTFontFeatureSettings> FeatureSettings {
 			get {
 				return Adapter.GetNativeArray (Dictionary, CTFontDescriptorAttributeKey.Features,
-						d => new CTFontFeatureSettings ((NSDictionary) Runtime.GetNSObject (d)));
+						d => new CTFontFeatureSettings (Runtime.GetNSObject<NSDictionary> (d)));
 			}
 			set {
 				List<CTFontFeatureSettings> v;
@@ -728,7 +728,7 @@ namespace MonoMac.CoreText {
 			var cfDictRef = CTFontDescriptorCopyAttributes (handle);
 			if (cfDictRef == IntPtr.Zero)
 				return null;
-			var dict = (NSDictionary) Runtime.GetNSObject (cfDictRef);
+			var dict = Runtime.GetNSObject<NSDictionary> (cfDictRef);
 			dict.Release ();
 			return new CTFontDescriptorAttributes (dict);
 		}
@@ -755,7 +755,7 @@ namespace MonoMac.CoreText {
 		{
 			IntPtr lang;
 			var o = Runtime.GetNSObject (CTFontDescriptorCopyLocalizedAttribute (handle, attribute.Handle, out lang));
-			language = (NSString) Runtime.GetNSObject (lang);
+			language = Runtime.GetNSObject<NSString> (lang);
 			if (lang != IntPtr.Zero)
 				CFObject.CFRelease (lang);
 			return o;

@@ -106,7 +106,7 @@ namespace MonoMac.CoreFoundation {
 
 			var e = new CFException (
 					ToString (CFErrorCopyDescription (cfErrorHandle)),
-					(NSString) Runtime.GetNSObject (CFErrorGetDomain (cfErrorHandle)),
+					Runtime.GetNSObject<NSString> (CFErrorGetDomain (cfErrorHandle)),
 					CFErrorGetCode (cfErrorHandle),
 					ToString (CFErrorCopyFailureReason (cfErrorHandle)),
 					ToString (CFErrorCopyRecoverySuggestion (cfErrorHandle)));

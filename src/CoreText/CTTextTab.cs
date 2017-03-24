@@ -154,7 +154,7 @@ namespace MonoMac.CoreText {
 			if (options == IntPtr.Zero)
 				return null;
 			return new CTTextTabOptions (
-					(NSDictionary) Runtime.GetNSObject (options));
+					Runtime.GetNSObject<NSDictionary> (options));
 		}
 #endregion
 	}

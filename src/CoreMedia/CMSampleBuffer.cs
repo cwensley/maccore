@@ -433,7 +433,7 @@ namespace MonoMac.CoreMedia {
 			}
 			else
 			{
-				return NSArray.ArrayFromHandle (cfArrayRef, h => new CMSampleBufferAttachmentSettings ((NSMutableDictionary) Runtime.GetNSObject (h)));
+				return NSArray.ArrayFromHandle (cfArrayRef, h => new CMSampleBufferAttachmentSettings (Runtime.GetNSObject<NSMutableDictionary> (h)));
 			}
 		}
 		

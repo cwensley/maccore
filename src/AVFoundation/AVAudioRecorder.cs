@@ -121,7 +121,7 @@ namespace MonoMac.AVFoundation {
 
 				var ap = new AVAudioRecorder (url, settings, ptrtohandle);
 				if (ap.Handle == IntPtr.Zero){
-					error = (NSError) Runtime.GetNSObject (errhandle);
+					error = Runtime.GetNSObject<NSError> (errhandle);
 					return null;
 				} else
 					error = null;

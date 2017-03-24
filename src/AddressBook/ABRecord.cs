@@ -200,7 +200,7 @@ namespace MonoMac.AddressBook {
 			IntPtr value = CopyValue (id);
 			if (value == IntPtr.Zero)
 				return null;
-			return (T) Runtime.GetNSObject (value);
+			return Runtime.GetNSObject<T> (value);
 		}
 
 		internal string PropertyToString (int id)

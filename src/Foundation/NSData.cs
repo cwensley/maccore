@@ -243,7 +243,7 @@ namespace MonoMac.Foundation {
 				IntPtr val_addr = (IntPtr) ((IntPtr *) &val);
 
 				bool ret = _Save (file, (nuint)(auxiliaryFile ? 1 : 0), val_addr);
-				error = (NSError) Runtime.GetNSObject (val);
+				error = Runtime.GetNSObject<NSError> (val);
 				
 				return ret;
 			}
@@ -256,7 +256,7 @@ namespace MonoMac.Foundation {
 				IntPtr val_addr = (IntPtr) ((IntPtr *) &val);
 
 				bool ret = _Save (file, (nuint) options, val_addr);
-				error = (NSError) Runtime.GetNSObject (val);
+				error = Runtime.GetNSObject<NSError> (val);
 				
 				return ret;
 			}
@@ -269,7 +269,7 @@ namespace MonoMac.Foundation {
 				IntPtr val_addr = (IntPtr) ((IntPtr *) &val);
 
 				bool ret = _Save (url, (nuint)(auxiliaryFile ? 1 : 0), val_addr);
-				error = (NSError) Runtime.GetNSObject (val);
+				error = Runtime.GetNSObject<NSError> (val);
 				
 				return ret;
 			}

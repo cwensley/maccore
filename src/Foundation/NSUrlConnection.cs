@@ -35,16 +35,16 @@ namespace MonoMac.Foundation {
 				ehandle);
 
 			if (responseStorage != IntPtr.Zero)
-				response = (NSUrlResponse) Runtime.GetNSObject (responseStorage);
+				response = Runtime.GetNSObject<NSUrlResponse> (responseStorage);
 			else
 				response = null;
 
 			if (errorStorage != IntPtr.Zero)
-				error = (NSError) Runtime.GetNSObject (errorStorage);
+				error = Runtime.GetNSObject<NSError> (errorStorage);
 			else
 				error = null;
 			
-			return (NSData) Runtime.GetNSObject (res);
+			return Runtime.GetNSObject<NSData> (res);
 		}
 
 		[Advice ("Use Schedule (NSRunLoop, NSString) instead")]

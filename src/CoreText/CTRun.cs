@@ -142,7 +142,7 @@ namespace MonoMac.CoreText {
 
 		public CTStringAttributes GetAttributes ()
 		{
-			var d = (NSDictionary) Runtime.GetNSObject (CTRunGetAttributes (handle));
+			var d = Runtime.GetNSObject<NSDictionary> (CTRunGetAttributes (handle));
 			return d == null ? null : new CTStringAttributes (d);
 		}
 

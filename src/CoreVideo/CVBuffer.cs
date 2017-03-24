@@ -128,7 +128,7 @@ namespace MonoMac.CoreVideo {
 		extern static IntPtr CVBufferGetAttachment (IntPtr buffer, IntPtr key, out CVAttachmentMode attachmentMode);
 		public NSObject GetAttachment (NSString key, out CVAttachmentMode attachmentMode)
 		{
-			return Runtime.GetNSObject (CVBufferGetAttachment (handle, key.Handle, out attachmentMode));
+			return Runtime.GetNSObject<NSObject> (CVBufferGetAttachment (handle, key.Handle, out attachmentMode));
 		}
 
 #if !MONOMAC_BOOTSTRAP && !COREBUILD
@@ -136,7 +136,7 @@ namespace MonoMac.CoreVideo {
 		extern static IntPtr CVBufferGetAttachments (IntPtr buffer, CVAttachmentMode attachmentMode);
 		public NSDictionary GetAttachments (CVAttachmentMode attachmentMode)
 		{
-			return (NSDictionary) Runtime.GetNSObject (CVBufferGetAttachments (handle, attachmentMode));
+			return Runtime.GetNSObject<NSDictionary> (CVBufferGetAttachments (handle, attachmentMode));
 		}
 #endif
 

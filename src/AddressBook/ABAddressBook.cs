@@ -235,7 +235,7 @@ namespace MonoMac.AddressBook {
                         var descriptor = (BlockLiteral *) block;
                         var del = (Action<bool,NSError>) (descriptor->global_handle != IntPtr.Zero ? GCHandle.FromIntPtr (descriptor->global_handle).Target : GCHandle.FromIntPtr (descriptor->local_handle).Target);
                         if (del != null)
-                                del (success, error == IntPtr.Zero ? null : (MonoMac.Foundation.NSError) Runtime.GetNSObject (error));
+                                del (success, error == IntPtr.Zero ? null : Runtime.GetNSObject<MonoMac.Foundation.NSError> (error));
 		}
 
 		[DllImport (Constants.AddressBookLibrary)]
@@ -397,7 +397,7 @@ namespace MonoMac.AddressBook {
 				return;
 			self.OnExternalChange (new ExternalChangeEventArgs (
 					       new ABAddressBook (addressBook, false),
-						(NSDictionary) Runtime.GetNSObject (info)));
+						Runtime.GetNSObject<NSDictionary> (info)));
 		}
 
 		object eventLock = new object ();

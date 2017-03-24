@@ -217,7 +217,7 @@ namespace MonoMac.Foundation {
 				IntPtr p = Messaging.IntPtr_objc_msgSend_UInt32 (handle, Selector.GetHandle (selObjectAtIndex_), i);
 #endif
 
-				ret [i] = (T) Runtime.GetNSObject (p);
+				ret [i] = Runtime.GetNSObject<T> (p);
 				ret [i].Handle = p;
 			}
 			return ret;
@@ -231,7 +231,7 @@ namespace MonoMac.Foundation {
 				nuint n = weakArray.Count;
 				T [] ret = new T [n];
 				for (nuint i = 0; i < n; i++){
-					ret [i] = (T) Runtime.GetNSObject (weakArray.ValueAt (i));
+					ret [i] = Runtime.GetNSObject<T> (weakArray.ValueAt (i));
 				}
 				return ret;
 			} catch {

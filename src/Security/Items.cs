@@ -659,17 +659,17 @@ namespace MonoMac.Security {
 
 		string FetchString (IntPtr key)
 		{
-			return (string) (NSString) Runtime.GetNSObject (queryDict.LowlevelObjectForKey (key));
+			return (string) Runtime.GetNSObject<NSString> (queryDict.LowlevelObjectForKey (key));
 		}
 
 		NSNumber FetchNumber (IntPtr key)
 		{
-			return (NSNumber) Runtime.GetNSObject (queryDict.LowlevelObjectForKey (key));
+			return Runtime.GetNSObject<NSNumber> (queryDict.LowlevelObjectForKey (key));
 		}
 
 		NSData FetchData (IntPtr key)
 		{
-			return (NSData) Runtime.GetNSObject (queryDict.LowlevelObjectForKey (key));
+			return Runtime.GetNSObject<NSData> (queryDict.LowlevelObjectForKey (key));
 		}
 		
 
@@ -1135,7 +1135,7 @@ namespace MonoMac.Security {
 
 		public NSArray MatchItemList {
 			get {
-				return (NSArray) Runtime.GetNSObject (Fetch (SecItem.MatchItemList));
+				return Runtime.GetNSObject<NSArray> (Fetch (SecItem.MatchItemList));
 			}
 
 			set {

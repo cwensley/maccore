@@ -1224,7 +1224,7 @@ public class Generator {
 			
 			if (IsWrappedType (pi.ParameterType)){
 				pars.AppendFormat ("IntPtr {0}", pi.Name);
-				invoke.AppendFormat ("({1}) Runtime.GetNSObject ({0})", pi.Name, pi.ParameterType);
+				invoke.AppendFormat ("Runtime.GetNSObject<{1}> ({0})", pi.Name, pi.ParameterType);
 				continue;
 			}
 
@@ -2062,7 +2062,7 @@ public class Generator {
 					if (propertyType.IsArray && IsWrappedType (propertyType.GetElementType ())){
 						print ("return NSArray.ArrayFromHandle<{0}> (value);", RenderType (propertyType.GetElementType ()));
 					} else if (IsWrappedType (propertyType)){
-						print ("return ({0}) Runtime.GetNSObject (value);", RenderType (propertyType));
+						print ("return Runtime.GetNSObject<{0}> (value);", RenderType (propertyType));
 					} else if (fullname == "System.Drawing.RectangleF")
 						print (GenerateNSValue ("RectangleFValue"));
 					else if (propertyType == typeof (double))
@@ -2411,7 +2411,7 @@ public class Generator {
 					cast_a = "(" + FormatType (mi.DeclaringType, mi.ReturnType) + ") ";
 					cast_b = "";
 				} else if (IsWrappedType (mi.ReturnType)){
-					cast_a = "(" + FormatType (mi.DeclaringType, mi.ReturnType) + ") Runtime.GetNSObject (";
+					cast_a = "Runtime.GetNSObject<" + FormatType (mi.DeclaringType, mi.ReturnType) + "> (";
 					cast_b = ")";
 				} else if (mai.Type == typeof (string) && !mai.PlainString){
 					cast_a = "NSString.FromHandle (";
@@ -2709,7 +2709,7 @@ public class Generator {
 				if (mai.Type.GetElementType () == typeof (string)){
 					byRefPostProcessing.AppendFormat("{0} = {0}Value != IntPtr.Zero ? NSString.FromHandle ({0}Value) : null;", pi.Name, mai.Type.Name.Replace("&", ""));
 				} else {
-					byRefPostProcessing.AppendFormat("{0} = {0}Value != IntPtr.Zero ? ({1})Runtime.GetNSObject({0}Value) : null;", pi.Name, mai.Type.Name.Replace("&", ""));
+					byRefPostProcessing.AppendFormat("{0} = {0}Value != IntPtr.Zero ? Runtime.GetNSObject<{1}>({0}Value) : null;", pi.Name, mai.Type.Name.Replace("&", ""));
 				}
 				byRefPostProcessing.AppendLine();
 				byRefPostProcessing.AppendFormat("Marshal.FreeHGlobal({0}Ptr);", pi.Name);

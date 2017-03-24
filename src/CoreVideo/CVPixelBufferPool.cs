@@ -98,7 +98,7 @@ namespace MonoMac.CoreVideo {
 		// TODO: Return type is CVPixelBufferAttributes but need different name when this one is not WeakXXXX
 		public NSDictionary PixelBufferAttributes {
 			get {
-				return (NSDictionary) Runtime.GetNSObject (CVPixelBufferPoolGetPixelBufferAttributes (handle));
+				return Runtime.GetNSObject<NSDictionary> (CVPixelBufferPoolGetPixelBufferAttributes (handle));
 			}
 		}
 
@@ -107,7 +107,7 @@ namespace MonoMac.CoreVideo {
 
 		public NSDictionary Attributes {
 			get {
-				return (NSDictionary) Runtime.GetNSObject (CVPixelBufferPoolGetAttributes (handle));
+				return Runtime.GetNSObject<NSDictionary> (CVPixelBufferPoolGetAttributes (handle));
 			}
 		}
 

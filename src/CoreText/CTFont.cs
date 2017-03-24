@@ -288,7 +288,7 @@ namespace MonoMac.CoreText {
 		public IEnumerable<CTFontFeatureSelectors> Selectors {
 			get {
 				return Adapter.GetNativeArray (Dictionary, CTFontFeatureKey.Selectors,
-						d => CTFontFeatureSelectors.Create (FeatureGroup, (NSDictionary) Runtime.GetNSObject (d)));
+						d => CTFontFeatureSelectors.Create (FeatureGroup, Runtime.GetNSObject<NSDictionary> (d)));
 			}
 			set {
 				List<CTFontFeatureSelectors> v;
@@ -1805,7 +1805,7 @@ namespace MonoMac.CoreText {
 		static extern IntPtr CTFontCopyTraits (IntPtr font);
 		public CTFontTraits GetTraits ()
 		{
-			var d = (NSDictionary) Runtime.GetNSObject (CTFontCopyTraits (handle));
+			var d = Runtime.GetNSObject<NSDictionary> (CTFontCopyTraits (handle));
 			if (d == null)
 				return null;
 			d.Release ();
@@ -1867,7 +1867,7 @@ namespace MonoMac.CoreText {
 		static extern IntPtr CTFontCopyCharacterSet (IntPtr font);
 		public NSCharacterSet CharacterSet {
 			get {
-				var cs = (NSCharacterSet) Runtime.GetNSObject (CTFontCopyCharacterSet (handle));
+				var cs = Runtime.GetNSObject<NSCharacterSet> (CTFontCopyCharacterSet (handle));
 				if (cs == null)
 					return null;
 				cs.Release ();
@@ -2128,7 +2128,7 @@ namespace MonoMac.CoreText {
 			if (cfArrayRef == IntPtr.Zero)
 				return new CTFontVariationAxes [0];
 			var axes = NSArray.ArrayFromHandle (cfArrayRef,
-					d => new CTFontVariationAxes ((NSDictionary) Runtime.GetNSObject (d)));
+					d => new CTFontVariationAxes (Runtime.GetNSObject<NSDictionary> (d)));
 			CFObject.CFRelease (cfArrayRef);
 			return axes;
 		}
@@ -2140,7 +2140,7 @@ namespace MonoMac.CoreText {
 			var cfDictionaryRef = CTFontCopyVariation (handle);
 			if (cfDictionaryRef == IntPtr.Zero)
 				return null;
-			return new CTFontVariation ((NSDictionary) Runtime.GetNSObject (cfDictionaryRef));
+			return new CTFontVariation (Runtime.GetNSObject<NSDictionary> (cfDictionaryRef));
 		}
 #endregion
 
@@ -2155,7 +2155,7 @@ namespace MonoMac.CoreText {
 			if (cfArrayRef == IntPtr.Zero)
 				return new CTFontFeatures [0];
 			var features = NSArray.ArrayFromHandle (cfArrayRef,
-					d => new CTFontFeatures ((NSDictionary) Runtime.GetNSObject (d)));
+					d => new CTFontFeatures (Runtime.GetNSObject<NSDictionary> (d)));
 			CFObject.CFRelease (cfArrayRef);
 			return features;
 		}
@@ -2169,7 +2169,7 @@ namespace MonoMac.CoreText {
 			if (cfArrayRef == IntPtr.Zero)
 				return new CTFontFeatureSettings [0];
 			var featureSettings = NSArray.ArrayFromHandle (cfArrayRef,
-					d => new CTFontFeatureSettings ((NSDictionary) Runtime.GetNSObject (d)));
+					d => new CTFontFeatureSettings (Runtime.GetNSObject<NSDictionary> (d)));
 			CFObject.CFRelease (cfArrayRef);
 			return featureSettings;
 		}

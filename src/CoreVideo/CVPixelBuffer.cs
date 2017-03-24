@@ -130,7 +130,7 @@ namespace MonoMac.CoreVideo {
 				throw new Exception ("CVPixelBufferCreate returned: " + ret);
 			}
 			
-			NSDictionary dictionary = (NSDictionary) Runtime.GetNSObject (Marshal.ReadIntPtr (resolvedDictionaryOut));
+			NSDictionary dictionary = Runtime.GetNSObject<NSDictionary> (Marshal.ReadIntPtr (resolvedDictionaryOut));
 			Marshal.FreeHGlobal (resolvedDictionaryOut);
 
 			return dictionary;

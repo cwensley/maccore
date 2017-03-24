@@ -639,7 +639,7 @@ namespace MonoMac.AddressBook {
 		extern static IntPtr ABPersonCopyImageData (IntPtr person);
 
 		public NSData Image {
-			get {return (NSData) Runtime.GetNSObject (ABPersonCopyImageData (Handle));}
+			get {return Runtime.GetNSObject<NSData> (ABPersonCopyImageData (Handle));}
 			set {
 				IntPtr error;
 				if (!ABPersonSetImageData (Handle, value == null ? IntPtr.Zero : value.Handle, out error))
@@ -835,7 +835,7 @@ namespace MonoMac.AddressBook {
 				return null;
 
 			return new ABMultiValue<T> (handle,
-				l => factory ((NSDictionary) (object) Runtime.GetNSObject (l)),
+				l => factory (Runtime.GetNSObject<NSDictionary> (l)),
 				l => l.Dictionary.Handle);
 		}
 
@@ -984,7 +984,7 @@ namespace MonoMac.AddressBook {
 		[Since (4,1)]
 		public NSData GetImage (ABPersonImageFormat format)
 		{
-			return (NSData) Runtime.GetNSObject (ABPersonCopyImageDataWithFormat (Handle, format));
+			return Runtime.GetNSObject<NSData> (ABPersonCopyImageDataWithFormat (Handle, format));
 		}
 
 		[DllImport (Constants.AddressBookLibrary)]

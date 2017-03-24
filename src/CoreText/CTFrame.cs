@@ -190,7 +190,7 @@ namespace MonoMac.CoreText {
 
 		public CTFrameAttributes GetFrameAttributes ()
 		{
-			var attrs = (NSDictionary) Runtime.GetNSObject (CTFrameGetFrameAttributes (handle));
+			var attrs = Runtime.GetNSObject<NSDictionary> (CTFrameGetFrameAttributes (handle));
 			return attrs == null ? null : new CTFrameAttributes (attrs);
 		}
 		
