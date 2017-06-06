@@ -1,3 +1,4 @@
+#if MONOTOUCH
 //
 // Copyright 2012 Xamarin Inc
 //
@@ -34,3 +35,4 @@ namespace MonoTouch.Foundation {
 		}
 	}
 }
+#endif

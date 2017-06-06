@@ -1,3 +1,4 @@
+#if MONOTOUCH
 //
 // AVPlayer.cs: Complementing methods
 //
@@ -45,3 +46,4 @@ namespace MonoTouch.AVFoundation {
 		}
 	}
 }
+#endif
