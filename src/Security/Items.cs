@@ -1200,7 +1200,7 @@ namespace MonoMac.Security {
 
 		public NSDate MatchValidOnDate {
 			get {
-				return (NSDate) (Runtime.GetNSObject (Fetch (SecItem.MatchValidOnDate)));
+				return (Runtime.GetNSObject<NSDate> (Fetch (SecItem.MatchValidOnDate)));
 			}
 			
 			set {
