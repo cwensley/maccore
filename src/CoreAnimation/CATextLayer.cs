@@ -50,7 +50,7 @@ namespace MonoMac.CoreAnimation {
 				else
 					h = ObjCRuntime.Messaging.IntPtr_objc_msgSendSuper (this.SuperHandle, selStringHandle);
 				
-				return Runtime.GetNSObject (h) as NSAttributedString;
+				return Runtime.GetNSObject<NSAttributedString> (h);
 			}
 			set {
 				if (value == null)
