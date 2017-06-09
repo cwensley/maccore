@@ -1173,7 +1173,7 @@ namespace MonoMac.AudioToolbox {
 
 		public NSData AlbumArtwork {
 			get {
-				return (NSData) MonoMac.ObjCRuntime.Runtime.GetNSObject (GetIntPtr (AudioFileProperty.AlbumArtwork));
+				return MonoMac.ObjCRuntime.Runtime.GetNSObject<NSData> (GetIntPtr (AudioFileProperty.AlbumArtwork));
 			}
 		}
 		
