@@ -89,6 +89,8 @@ namespace MonoMac.Foundation {
 		}
 #endif
 
+		public static readonly NSString Empty = new NSString(string.Empty);
+		
 		public static IntPtr CreateNative (string str)
 		{
 			if (str == null)
