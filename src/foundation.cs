@@ -1048,7 +1048,7 @@ namespace MonoMac.Foundation
 	[BaseType (typeof (NSObject))]
 	public interface NSFormatter {
 		[Export ("stringForObjectValue:")]
-		string StringFor (NSObject value);
+		string StringFor ( [NullAllowed] NSObject value);
 
 		// - (NSAttributedString *)attributedStringForObjectValue:(id)obj withDefaultAttributes:(NSDictionary *)attrs;
 
