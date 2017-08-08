@@ -51,6 +51,9 @@ namespace MonoMac.Foundation {
 
 		IEnumerator IEnumerable.GetEnumerator ()
 		{
+			if (this.Count == 0)
+				yield break;
+				
 			for (nuint i = this.FirstIndex; i <= this.LastIndex;) {
 				yield return i;
 				i = this.IndexGreaterThan (i);
@@ -59,6 +62,9 @@ namespace MonoMac.Foundation {
 
 		public IEnumerator<nuint> GetEnumerator ()
 		{
+			if (this.Count == 0)
+				yield break;
+				
 			for (nuint i = this.FirstIndex; i <= this.LastIndex;) {
 				yield return i;
 				i = this.IndexGreaterThan (i);
@@ -68,6 +74,10 @@ namespace MonoMac.Foundation {
 		public nuint[] ToArray ()
 		{
 			nuint [] indexes = new nuint [Count];
+			
+			if (this.Count == 0)
+				return indexes;
+				
 			int j = 0;
 			for (nuint i = this.FirstIndex; i <= this.LastIndex;) {
 				indexes [j++] = i;
