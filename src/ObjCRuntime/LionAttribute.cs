@@ -26,14 +26,59 @@
 using System;
 
 namespace MonoMac.ObjCRuntime {
-	public class LionAttribute : Attribute {
+	public class LionAttribute : IntroducedAttribute {
+		public LionAttribute() : base(10, 6) { }
 	}
-	public class MountainLionAttribute : Attribute {
+	public class MountainLionAttribute : IntroducedAttribute {
+		public MountainLionAttribute() : base(10, 7) { }
 	}
-	public class MavericksAttribute : Attribute {
+	public class MavericksAttribute : IntroducedAttribute {
+		public MavericksAttribute() : base(10, 8) { }
 	}
-	public class YosemiteAttribute : Attribute {
+	public class YosemiteAttribute : IntroducedAttribute {
+		public YosemiteAttribute() : base(10, 9) { }
 	}
-	public class ElCapitanAttribute : Attribute {
+	public class ElCapitanAttribute : IntroducedAttribute {
+		public ElCapitanAttribute() : base(10, 10) { }
+	}
+
+	[AttributeUsage (AttributeTargets.Class | AttributeTargets.Struct | AttributeTargets.Enum | AttributeTargets.Constructor | AttributeTargets.Method | AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Event | AttributeTargets.Interface | AttributeTargets.Delegate, AllowMultiple = true)]
+	public abstract class AvailabilityBaseAttribute : Attribute
+	{
+		public string Message { get; private set; }
+		
+		public Version Version { get; private set; }
+		
+		public AvailabilityBaseAttribute(Version version, string message)
+		{
+			Version = version;
+			Message = message;
+		}
+	}
+
+	public class IntroducedAttribute : AvailabilityBaseAttribute
+	{
+		public IntroducedAttribute (int majorVersion, int minorVersion, string message = null)
+			: base (new Version (majorVersion, minorVersion), message)
+		{
+		}
+
+		public IntroducedAttribute (int majorVersion, int minorVersion, int subminorVersion, string message = null)
+			: base(new Version(majorVersion, minorVersion, subminorVersion), message)
+		{
+		}
+	}
+	
+	public class DeprecatedAttribute : AvailabilityBaseAttribute
+	{
+		public DeprecatedAttribute (int majorVersion, int minorVersion, string message = null)
+			: base (new Version (majorVersion, minorVersion), message)
+		{
+		}
+
+		public DeprecatedAttribute (int majorVersion, int minorVersion, int subminorVersion, string message = null)
+			: base(new Version(majorVersion, minorVersion, subminorVersion), message)
+		{
+		}
 	}
 }

@@ -1808,7 +1808,7 @@ public class Generator {
 					} else if (attr is NoDefaultValueAttribute) {
 						seenNoDefaultValue = true;
 						continue;
-					} else if (attr is SealedAttribute || attr is EventArgsAttribute || attr is DelegateNameAttribute || attr is EventNameAttribute || attr is ObsoleteAttribute || attr is AlphaAttribute || attr is NewAttribute || attr is SinceAttribute || attr is PostGetAttribute || attr is NullAllowedAttribute || attr is CheckDisposedAttribute || attr is SnippetAttribute || attr is LionAttribute || attr is MountainLionAttribute || attr is AppearanceAttribute || attr is ThreadSafeAttribute || attr is AutoreleaseAttribute || attr is EditorBrowsableAttribute || attr is AdviceAttribute)
+					} else if (attr is SealedAttribute || attr is EventArgsAttribute || attr is DelegateNameAttribute || attr is EventNameAttribute || attr is ObsoleteAttribute || attr is AlphaAttribute || attr is NewAttribute || attr is SinceAttribute || attr is PostGetAttribute || attr is NullAllowedAttribute || attr is CheckDisposedAttribute || attr is SnippetAttribute || attr is AvailabilityBaseAttribute || attr is AppearanceAttribute || attr is ThreadSafeAttribute || attr is AutoreleaseAttribute || attr is EditorBrowsableAttribute || attr is AdviceAttribute)
 						continue;
 					else if (attr is MarshalNativeExceptionsAttribute)
 						continue;
@@ -2169,8 +2169,20 @@ public class Generator {
 		if (mi == null)
 			return;
 
-		if (mi.GetCustomAttributes (typeof (MountainLionAttribute), false).Length > 0)
-			print ("[MountainLion]");
+		var availabilityAttributes = mi.GetCustomAttributes<AvailabilityBaseAttribute> (false);
+		foreach (var attr in availabilityAttributes)
+		{
+			var sb = new StringBuilder();
+			sb.Append("[");
+			sb.Append(attr is IntroducedAttribute ? "Introduced" : "Deprecated");
+			sb.Append("(");
+			var ver = attr.Version;
+			sb.Append(ver.Build > 0 ? $"{ver.Major}, {ver.Minor}, {ver.Build}" : $"{ver.Major}, {ver.Minor}");
+			if (!string.IsNullOrEmpty(attr.Message))
+			sb.Append($", \"{attr.Message.Replace("\"", "\\\"")}\"");
+			sb.Append(")]");
+			print (sb.ToString());
+		}
 	}
 
 	public string SelectorField (string s, bool ignore_inline_directive = false)
@@ -3491,11 +3503,13 @@ public class Generator {
 
 			PrintPlatformAttributes (type);
 
+			var baseTypes = base_type != typeof (object) && TypeName != "NSObject" && !is_category_class ? ": " + FormatType (type, base_type) : "";
 			print ("{0} unsafe {1}partial class {2} {3} {{",
 			       class_visibility,
 			       class_mod,
 			       TypeName,
-			       base_type != typeof (object) && TypeName != "NSObject" && !is_category_class ? ": " + FormatType (type, base_type) : "");
+			       baseTypes
+			       );
 
 			indent++;
 			

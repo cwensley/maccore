@@ -252,7 +252,7 @@ namespace MonoMac.CoreLocation {
 		[Export ("locationManagerShouldDisplayHeadingCalibration:"), DelegateName ("CLLocationManagerEventArgs"), DefaultValue (true)]
 		bool ShouldDisplayHeadingCalibration (CLLocationManager manager);
 	
-		[Export ("locationManager:didFailWithError:"), EventArgs ("NSError")]
+		[Export ("locationManager:didFailWithError:"), EventArgs ("NSError", SkipGeneration = true)]
 		void Failed (CLLocationManager manager, NSError error);
 
 #if !MONOMAC
@@ -290,7 +290,7 @@ namespace MonoMac.CoreLocation {
 		void LocationUpdatesResumed (CLLocationManager manager);
 
 		[Since (6,0)]
-		[Export ("locationManager:didFinishDeferredUpdatesWithError:"), EventArgs ("NSError")]
+		[Export ("locationManager:didFinishDeferredUpdatesWithError:"), EventArgs ("NSError", SkipGeneration = true)]
 		void DeferredUpdatesFinished (CLLocationManager manager, NSError error);
 	}
 

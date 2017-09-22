@@ -74,6 +74,19 @@ namespace MonoMac.Foundation {
 			return FromNSObjects (_items, count);
 		}
 
+		static public NSArray FromNSObjects (params INativeObject [] items)
+		{
+			return FromNativeObjects ((IList<INativeObject>)items);
+		}
+
+		static public NSArray FromNSObjects (int count, params INativeObject [] items)
+		{
+			if (items.Length < count)
+				throw new ArgumentException ("count is larger than the number of items", "count");
+			
+			return FromNativeObjects ((IList<INativeObject>)items, count);
+		}
+
 		public static NSArray FromObjects (params object [] items)
 		{
 			if (items == null)
@@ -130,6 +143,31 @@ namespace MonoMac.Foundation {
 			return arr;
 		}
 
+		internal static NSArray FromNativeObjects (IList<INativeObject> items)
+		{
+			if (items == null)
+				return new NSArray (true);
+			
+			IntPtr buf = Marshal.AllocHGlobal (items.Count * IntPtr.Size);
+			for (int i = 0; i < items.Count; i++)
+				Marshal.WriteIntPtr (buf, i * IntPtr.Size, items [i].Handle);
+			NSArray arr = NSArray.FromObjects (buf, items.Count);
+			Marshal.FreeHGlobal (buf);
+			return arr;
+		}
+
+		internal static NSArray FromNativeObjects (IList<INativeObject> items, int count)
+		{
+			if (items == null)
+				return new NSArray (true);
+			
+			IntPtr buf = Marshal.AllocHGlobal (items.Count * IntPtr.Size);
+			for (int i = 0; i < count; i++)
+				Marshal.WriteIntPtr (buf, i * IntPtr.Size, items [i].Handle);
+			NSArray arr = NSArray.FromObjects (buf, count);
+			Marshal.FreeHGlobal (buf);
+			return arr;
+		}
 		static public NSArray FromStrings (params string [] items)
 		{
 			if (items == null)
