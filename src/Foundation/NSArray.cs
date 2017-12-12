@@ -326,5 +326,23 @@ namespace MonoMac.Foundation {
 			return ret;
 		}
 		
+		private T UnsafeGetItem<T> (nuint index) where T : NSObject
+		{
+			IntPtr idx = ValueAt (index);
+
+			if (idx == IntPtr.Zero || idx == NSNull.Null.Handle) {
+				return (T)((object)null);
+			} else {
+				return Runtime.GetNSObject<T> (idx);
+			}
+		}
+		
+		public T GetItem<T> (nuint index) where T : NSObject
+		{
+			if (index >= Count) {
+				throw new ArgumentOutOfRangeException ("index");
+			}
+			return UnsafeGetItem<T> (index);
+		}
 	}
 }
