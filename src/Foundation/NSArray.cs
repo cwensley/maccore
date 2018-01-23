@@ -124,7 +124,7 @@ namespace MonoMac.Foundation {
 			
 			IntPtr buf = Marshal.AllocHGlobal (items.Count * IntPtr.Size);
 			for (int i = 0; i < items.Count; i++)
-				Marshal.WriteIntPtr (buf, i * IntPtr.Size, items [i].Handle);
+				Marshal.WriteIntPtr (buf, i * IntPtr.Size, items [i]?.Handle ?? NSNull.Null.Handle);
 			NSArray arr = NSArray.FromObjects (buf, items.Count);
 			Marshal.FreeHGlobal (buf);
 			return arr;
@@ -137,7 +137,7 @@ namespace MonoMac.Foundation {
 			
 			IntPtr buf = Marshal.AllocHGlobal (items.Count * IntPtr.Size);
 			for (int i = 0; i < count; i++)
-				Marshal.WriteIntPtr (buf, i * IntPtr.Size, items [i].Handle);
+				Marshal.WriteIntPtr (buf, i * IntPtr.Size, items [i]?.Handle ?? NSNull.Null.Handle);
 			NSArray arr = NSArray.FromObjects (buf, count);
 			Marshal.FreeHGlobal (buf);
 			return arr;
@@ -150,7 +150,7 @@ namespace MonoMac.Foundation {
 			
 			IntPtr buf = Marshal.AllocHGlobal (items.Count * IntPtr.Size);
 			for (int i = 0; i < items.Count; i++)
-				Marshal.WriteIntPtr (buf, i * IntPtr.Size, items [i].Handle);
+				Marshal.WriteIntPtr (buf, i * IntPtr.Size, items [i]?.Handle ?? NSNull.Null.Handle);
 			NSArray arr = NSArray.FromObjects (buf, items.Count);
 			Marshal.FreeHGlobal (buf);
 			return arr;
@@ -163,7 +163,7 @@ namespace MonoMac.Foundation {
 			
 			IntPtr buf = Marshal.AllocHGlobal (items.Count * IntPtr.Size);
 			for (int i = 0; i < count; i++)
-				Marshal.WriteIntPtr (buf, i * IntPtr.Size, items [i].Handle);
+				Marshal.WriteIntPtr (buf, i * IntPtr.Size, items [i]?.Handle ?? NSNull.Null.Handle);
 			NSArray arr = NSArray.FromObjects (buf, count);
 			Marshal.FreeHGlobal (buf);
 			return arr;
@@ -183,8 +183,8 @@ namespace MonoMac.Foundation {
 					if (items [i] == null)
 						throw new ArgumentNullException (string.Format ("items[{0}]", i));
 					
-					strings [i] = new NSString (items [i]);
-					val = strings [i].Handle;
+					strings [i] = (NSString)items [i];
+					val = strings [i]?.Handle ?? NSNull.Null.Handle;
 	
 					Marshal.WriteIntPtr (buf, i * IntPtr.Size, val);
 				}

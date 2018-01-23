@@ -2406,8 +2406,11 @@ namespace MonoMac.Foundation
 		void ResetStandardUserDefaults ();
 	
 		[Export ("initWithUser:")]
-		IntPtr Constructor (string  username);
+		IntPtr InitWithUserName (string  username);
 	
+		[Export ("initWithSuiteName:")]
+		IntPtr InitWithSuiteName (string  suiteName);
+
 		[Export ("objectForKey:")][Internal]
 		NSObject ObjectForKey (string defaultName);
 	
