@@ -81,4 +81,17 @@ namespace MonoMac.ObjCRuntime {
 		{
 		}
 	}
+	
+	public class MacAttribute : IntroducedAttribute
+	{
+		public MacAttribute (int majorVersion, int minorVersion, string message = null)
+			: base (majorVersion, minorVersion, message)
+		{
+		}
+
+		public MacAttribute (int majorVersion, int minorVersion, int subminorVersion, string message = null)
+			: base(majorVersion, minorVersion, subminorVersion, message)
+		{
+		}
+	}
 }
